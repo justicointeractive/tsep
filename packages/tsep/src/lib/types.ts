@@ -1,3 +1,5 @@
+import { TsepEngine, TsepParser } from './tsep';
+
 export type Primitive = string | number | boolean | RegExp | null | undefined;
 
 export interface Expression {
@@ -90,3 +92,15 @@ export type CoreExpression =
   | UnaryExpression;
 
 export type BinaryOpInfo = { value: string; prec: number; right_a: boolean };
+
+export type TsepPlugin = { name: string; init: (instance: TsepEngine) => void };
+
+export type TsepHookCallback = (
+  this: TsepParser,
+  env: TsepHookCallbackContext
+) => void;
+
+export type TsepHookCallbackContext = {
+  context: TsepParser;
+  node?: Expression;
+};

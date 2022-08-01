@@ -1,16 +1,8 @@
 import { assert } from './assert';
-import { TsepParser } from './tsep';
-import { Expression } from './types';
-
-export type HookCallback = (this: TsepParser, env: HookCallbackContext) => void;
-
-export type HookCallbackContext = {
-  context: TsepParser;
-  node?: Expression;
-};
+import { TsepHookCallback, TsepHookCallbackContext } from './types';
 
 export default class Hooks {
-  private hooks = new Map<string, HookCallback[]>();
+  private hooks = new Map<string, TsepHookCallback[]>();
 
   /**
    * Adds the given callback to the list of callbacks for the given hook.
@@ -21,8 +13,8 @@ export default class Hooks {
    *
    */
   add(
-    nameOrObject: string | Record<string, HookCallback>,
-    callback: HookCallback | boolean,
+    nameOrObject: string | Record<string, TsepHookCallback>,
+    callback: TsepHookCallback | boolean,
     first?: boolean | null
   ) {
     if (typeof nameOrObject != 'string') {
@@ -50,7 +42,7 @@ export default class Hooks {
    * Callbacks will be invoked synchronously and in the order in which they were registered.
    *
    */
-  run(name: string, env: HookCallbackContext) {
+  run(name: string, env: TsepHookCallbackContext) {
     this.get(name).forEach(function (callback) {
       callback.call(env.context, env);
     });

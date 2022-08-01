@@ -1,14 +1,15 @@
 import { TsepEngine } from './tsep';
+import { TsepPlugin } from './types';
 
 export default class Plugins {
-  private registered = new Map<string, Plugin>();
+  private registered = new Map<string, TsepPlugin>();
 
   constructor(private tsep: TsepEngine) {}
 
   /**
    * Adds the given plugin(s) to the registry
    */
-  register(...plugins: Plugin[]) {
+  register(...plugins: TsepPlugin[]) {
     plugins.forEach((plugin) => {
       if (typeof plugin !== 'object' || !plugin.name || !plugin.init) {
         throw new Error('Invalid Tsep plugin format');
@@ -22,5 +23,3 @@ export default class Plugins {
     });
   }
 }
-
-type Plugin = { name: string; init: (instance: TsepEngine) => void };
