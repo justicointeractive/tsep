@@ -109,7 +109,7 @@ describe('tsep', () => {
       '2 ** 3 ** 4 * 5 ** 6 ** 7 * (8 + 9)',
       '(2 ** 3) ** 4 * (5 ** 6 ** 7) * (8 + 9)',
     ].forEach((expr) =>
-      it(`Expr: ${expr.split('\r').join('\\r')}`, () =>
+      it(`Expr: ${expr.split('\n').join('\\n').split('\r').join('\\r')}`, () =>
         expect(scopedParser.parse(expr)).toMatchSnapshot())
     );
   });

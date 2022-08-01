@@ -1,26 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`tsep Ops Expr: 
-1\\r
-+
-2
- 1`] = `
-Object {
-  "left": Object {
-    "raw": "1",
-    "type": "Literal",
-    "value": 1,
-  },
-  "operator": "+",
-  "right": Object {
-    "raw": "2",
-    "type": "Literal",
-    "value": 2,
-  },
-  "type": "BinaryExpression",
-}
-`;
-
 exports[`tsep Ops Expr: (1+2)*3 1`] = `
 Object {
   "left": Object {
@@ -193,6 +172,23 @@ Object {
       "value": 9,
     },
     "type": "BinaryExpression",
+  },
+  "type": "BinaryExpression",
+}
+`;
+
+exports[`tsep Ops Expr: \\n1\\r\\n+\\n2\\n 1`] = `
+Object {
+  "left": Object {
+    "raw": "1",
+    "type": "Literal",
+    "value": 1,
+  },
+  "operator": "+",
+  "right": Object {
+    "raw": "2",
+    "type": "Literal",
+    "value": 2,
   },
   "type": "BinaryExpression",
 }
